@@ -61,7 +61,6 @@ public class racingcarController {
             String resultWinner = winner.get(0);
             outputView.printWinner(resultWinner);
         } else {
-
             String resultWinners = String.join(", ", winner);
             outputView.printWinner(resultWinners);
         }

@@ -4,11 +4,11 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class Car {
 
-    private final String name;
+    private final Name name;
     private int position = 0;
 
     public Car(String name) {
-        this.name = name;
+        this.name = new Name(name);
     }
 
     public boolean canMove() {
@@ -26,6 +26,6 @@ public class Car {
     }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
 }
