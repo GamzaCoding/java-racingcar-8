@@ -1,9 +1,8 @@
 package racingcar.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import racingcar.model.Car;
-import racingcar.model.Parsing;
+import racingcar.model.Cars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -20,15 +19,11 @@ public class racingcarController {
     public void run() {
         outputView.printInit();
         String names = inputView.inputCarName();
-        List<String> nameList = Parsing.parsingName(names);
 
-        List<Car> carList = new ArrayList<>();
+        Cars cars = new Cars(names);
+        List<Car> carList = cars.getCars();
 
-        // parsing된 이름을 바탕으로 자동차 생성 -> 자동차 리스트에 추가 로직
-        nameList.stream()
-                .map(Car::new)
-                .forEach(carList::add);
-
+        // 시도 횟수 물어보는 로직
         outputView.printTryCount();
         int tryCount = inputView.inputTryCount();
 
