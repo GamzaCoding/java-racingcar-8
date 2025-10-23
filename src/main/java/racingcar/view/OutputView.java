@@ -1,5 +1,7 @@
 package racingcar.view;
 
+import racingcar.model.Car;
+
 public class OutputView {
 
     private static final String ONE_STEP = "-";
@@ -20,8 +22,7 @@ public class OutputView {
         System.out.println("최종 우승자 : " + winner);
     }
 
-// 일단 이렇게 될거 같으니까 만들어 두는 느낌
-//    public void printCarMoved(Car car) {
-//        System.out.println(car.name() + " : " + ONE_STEP.repeat(car.distance()) );
-//    }
+    public void printCarMoved(Car car) {
+        System.out.println(car.getName() + " : " + ONE_STEP.repeat(car.getPosition()) );
+    }
 }
