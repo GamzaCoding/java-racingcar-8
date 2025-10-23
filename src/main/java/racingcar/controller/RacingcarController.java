@@ -3,15 +3,16 @@ package racingcar.controller;
 import java.util.List;
 import racingcar.model.Car;
 import racingcar.model.Cars;
+import racingcar.model.RacingRound;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-public class racingcarController {
+public class RacingcarController {
 
     private final InputView inputView;
     private final OutputView outputView;
 
-    public racingcarController() {
+    public RacingcarController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
     }
@@ -30,11 +31,14 @@ public class racingcarController {
 
         outputView.printRacingResult();
 
-        // 각 자동차들 이동 로직, povi : -- 이런식으로 결과 출력하는 로직
-        for (int i = 0; i < tryCount; i++) {
-            carList.stream()
-                    .peek(Car::move)
-                    .forEach(outputView::printCarMoved);
+        RacingRound racingRound = new RacingRound(tryCount);
+        while (racingRound.hasNextRound()) {
+            racingRound.playRacingRound();
+            carList.forEach(
+                    car -> {
+                        car.move();
+                        outputView.printCarMoved(car);
+                    });
             System.out.println();
         }
 
