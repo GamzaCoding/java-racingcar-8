@@ -25,11 +25,11 @@ public class OutputView {
 
     public void printRoundResult(List<CarDto> carDtos) {
         carDtos.forEach(this::printCarMoved);
+        System.out.println();
     }
 
     private void printCarMoved(CarDto carDto) {
         System.out.println(carDto.name() + " : " + ONE_STEP.repeat(carDto.position()));
-        System.out.println();
     }
 
     public void printWinner(List<String> winner) {
