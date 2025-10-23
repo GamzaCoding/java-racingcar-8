@@ -1,18 +1,15 @@
 package racingcar.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Cars {
 
-    private final List<Car> cars = new ArrayList<>();
+    private final List<Car> cars;
 
     public Cars(String carNames) {
-        List<String> nameList = Parsing.parsingName(carNames);
-
-        nameList.stream()
+        this.cars = Parsing.parsingName(carNames).stream()
                 .map(Car::new)
-                .forEach(cars::add);
+                .toList();
     }
 
     public List<Car> getCars() {

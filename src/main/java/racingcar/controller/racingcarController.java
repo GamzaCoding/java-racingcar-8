@@ -26,7 +26,6 @@ public class racingcarController {
         // 시도 횟수 물어보는 로직
         outputView.printTryCount();
         int tryCount = inputView.inputTryCount();
-
         System.out.println();
 
         outputView.printRacingResult();
