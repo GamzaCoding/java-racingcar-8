@@ -12,7 +12,7 @@ public class RacingRound {
         return tryCount > 0;
     }
 
-    public void playRacingRound() {
+    public void playRound() {
         tryCount--;
     }
 
