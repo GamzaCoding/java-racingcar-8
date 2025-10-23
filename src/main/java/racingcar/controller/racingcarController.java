@@ -32,6 +32,8 @@ public class racingcarController {
         outputView.printTryCount();
         int tryCount = inputView.inputTryCount();
 
+        System.out.println();
+
         outputView.printRacingResult();
 
         // 각 자동차들 이동 로직, povi : -- 이런식으로 결과 출력하는 로직
