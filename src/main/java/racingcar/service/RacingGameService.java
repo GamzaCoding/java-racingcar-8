@@ -8,18 +8,13 @@ import racingcar.model.RacingRound;
 
 public class RacingGameService {
 
-    private Cars cars;
-    private RacingRound racingRound;
+    private final Cars cars;
+    private final RacingRound racingRound;
 
-    public void createCars(String carsNames) {
-        this.cars = new Cars(carsNames);
-    }
-
-    public void initRacingRound(int tryCount) {
+    public RacingGameService(String carNames, int tryCount) {
+        this.cars = new Cars(carNames);
         this.racingRound = new RacingRound(tryCount);
     }
-
-    // createCars, initRacingRound 보다 다른 메서드가 먼저 호출되면 nullPointException이 발생하는 문제가 있다.
 
     public boolean hasNextRound() {
         return racingRound.hasNextRound();
@@ -28,8 +23,7 @@ public class RacingGameService {
     public void playRound() {
         racingRound.progressRound();
 
-        cars.getCars()
-                .forEach(Car::move);
+        cars.getCars().forEach(Car::move);
     }
 
     public List<CarDto> roundResult() {

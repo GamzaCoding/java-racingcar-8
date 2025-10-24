@@ -8,28 +8,28 @@ public class RacingGameController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final RacingGameService racingGameService;
 
     public RacingGameController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.racingGameService = new RacingGameService();
     }
 
     public void run() {
-        gameSetting();
-        gamePlay();
-        gameResult();
+        RacingGameService racingGameService = setupGame();
+        playGame(racingGameService);
+        showWinner(racingGameService);
     }
 
-    private void gameSetting() {
+    private RacingGameService setupGame() {
         outputView.printInitMessage();
-        racingGameService.createCars(inputView.inputCarName());
+        String carNames = inputView.inputCarName();
         outputView.printRequestMessageOfTryCount();
-        racingGameService.initRacingRound(inputView.inputTryCount());
+        int tryCount = inputView.inputTryCount();
+
+        return new RacingGameService(carNames, tryCount);
     }
 
-    private void gamePlay() {
+    private void playGame(RacingGameService racingGameService) {
         outputView.printRacingResultMessage();
 
         while (racingGameService.hasNextRound()) {
@@ -38,7 +38,7 @@ public class RacingGameController {
         }
     }
 
-    private void gameResult() {
+    private void showWinner(RacingGameService racingGameService) {
         outputView.printWinner(racingGameService.getWinner());
     }
 }
