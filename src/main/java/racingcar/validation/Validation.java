@@ -12,6 +12,8 @@ public class Validation {
     private static final String NAME_LENGTH_UNDER_FIVE_ERROR_MESSAGE = "이름은 5글자 이하만 가능합니다.";
     private static final String POSITIVE_NUMBER_ERROR_MESSAGE = "시도 횟수는 양의 정수를 입력해야 합니다.";
     private static final String INTEGER_FORMAT_ERROR_MESSAGE = "시도 횟수는 숫자를 입력해야 합니다.";
+    private static final int NAME_LENGTH_LIMIT = 5;
+    private static final int ZERO = 0;
 
     public static void validateNameFormat(String inputCarNames) {
         if (inputCarNames.matches(CAR_NAMES_REGEX)) {
@@ -27,14 +29,14 @@ public class Validation {
     }
 
     public static void validateNameLengthUnderFive(String name) {
-        if (name.length() <= 5) {
+        if (name.length() <= NAME_LENGTH_LIMIT) {
             return;
         }
         throw new IllegalArgumentException(NAME_LENGTH_UNDER_FIVE_ERROR_MESSAGE);
     }
 
     public static void validatePositiveNumber(String tryCount) {
-        if (Integer.parseInt(tryCount) <= 0) {
+        if (Integer.parseInt(tryCount) <= ZERO) {
             throw new IllegalArgumentException(POSITIVE_NUMBER_ERROR_MESSAGE);
         }
     }
