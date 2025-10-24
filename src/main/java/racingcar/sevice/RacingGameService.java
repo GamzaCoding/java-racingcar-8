@@ -34,17 +34,18 @@ public class RacingGameService {
         return cars.getCarDto();
     }
 
-    public int getMaxPosition() {
-        return cars.getCars().stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElseThrow(() -> new IllegalStateException("차가 없습니다."));
-    }
-
-    public List<String> getWinner(int maxPosition) {
+    public List<String> getWinner() {
+        int maxPosition = maxPosition();
         return cars.getCars().stream()
                 .filter(car -> car.getPosition() == maxPosition)
                 .map(Car::getName)
                 .toList();
+    }
+
+    private int maxPosition() {
+        return cars.getCars().stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElseThrow(() -> new IllegalStateException("차가 없습니다."));
     }
 }
