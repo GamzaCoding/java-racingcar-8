@@ -13,13 +13,8 @@ public class RacingGameService {
     private final RacingRound racingRound;
 
     public RacingGameService(String carNames, int tryCount) {
-        this.cars = new Cars(makeCarsList(carNames));
+        this.cars = createCars(carNames);
         this.racingRound = new RacingRound(tryCount);
-    }
-
-    // 이 부분 추가 리팩터링 필요해보임
-    private List<String> makeCarsList(String carNames) {
-        return Parsing.parsingName(carNames);
     }
 
     public boolean hasNextRound() {
@@ -42,5 +37,9 @@ public class RacingGameService {
                 .filter(car -> car.getPosition() == maxPosition)
                 .map(Car::getName)
                 .toList();
+    }
+
+    private Cars createCars(String carNames) {
+        return new Cars(Parsing.parsingName(carNames));
     }
 }
