@@ -1,6 +1,6 @@
 package racingcar.controller;
 
-import racingcar.sevice.RacingGameService;
+import racingcar.service.RacingGameService;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -26,14 +26,14 @@ public class RacingGameController {
         outputView.printInitMessage();
         racingGameService.createCars(inputView.inputCarName());
         outputView.printRequestMessageOfTryCount();
-        racingGameService.settingRacingRound(inputView.inputTryCount());
+        racingGameService.initRacingRound(inputView.inputTryCount());
     }
 
     private void gamePlay() {
         outputView.printRacingResultMessage();
 
         while (racingGameService.hasNextRound()) {
-            racingGameService.playRacing();
+            racingGameService.playRound();
             outputView.printRoundResult(racingGameService.roundResult());
         }
     }

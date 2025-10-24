@@ -1,4 +1,4 @@
-package racingcar.sevice;
+package racingcar.service;
 
 import java.util.List;
 import racingcar.dto.CarDto;
@@ -15,16 +15,18 @@ public class RacingGameService {
         this.cars = new Cars(carsNames);
     }
 
-    public void settingRacingRound(int tryCount) {
+    public void initRacingRound(int tryCount) {
         this.racingRound = new RacingRound(tryCount);
     }
+
+    // createCars, initRacingRound 보다 다른 메서드가 먼저 호출되면 nullPointException이 발생하는 문제가 있다.
 
     public boolean hasNextRound() {
         return racingRound.hasNextRound();
     }
 
-    public void playRacing() {
-        racingRound.playRound(); // 상태를 변화시키는 메서드를 호출 하는 것임
+    public void playRound() {
+        racingRound.progressRound();
 
         cars.getCars()
                 .forEach(Car::move);
@@ -35,17 +37,10 @@ public class RacingGameService {
     }
 
     public List<String> getWinner() {
-        int maxPosition = maxPosition();
+        int maxPosition = cars.findMaxPosition();
         return cars.getCars().stream()
                 .filter(car -> car.getPosition() == maxPosition)
                 .map(Car::getName)
                 .toList();
-    }
-
-    private int maxPosition() {
-        return cars.getCars().stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElseThrow(() -> new IllegalStateException("차가 없습니다."));
     }
 }

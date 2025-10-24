@@ -14,6 +14,13 @@ public class Cars {
                 .toList();
     }
 
+    public int findMaxPosition() {
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElseThrow(() -> new IllegalStateException("차가 없습니다."));
+    }
+
     public List<Car> getCars() {
         return cars;
     }
