@@ -5,6 +5,7 @@ import racingcar.dto.CarDto;
 import racingcar.model.Car;
 import racingcar.model.Cars;
 import racingcar.model.RacingRound;
+import racingcar.utility.Parsing;
 
 public class RacingGameService {
 
@@ -12,8 +13,13 @@ public class RacingGameService {
     private final RacingRound racingRound;
 
     public RacingGameService(String carNames, int tryCount) {
-        this.cars = new Cars(carNames);
+        this.cars = new Cars(makeCarsList(carNames));
         this.racingRound = new RacingRound(tryCount);
+    }
+
+    // 이 부분 추가 리팩터링 필요해보임
+    private List<String> makeCarsList(String carNames) {
+        return Parsing.parsingName(carNames);
     }
 
     public boolean hasNextRound() {
