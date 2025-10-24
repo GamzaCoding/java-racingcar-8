@@ -9,7 +9,7 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(List<String> carNames) {
-        Validation.validateDuplicateName(carNames);
+        Validation.validateNameDuplication(carNames);
 
         this.cars = carNames.stream()
                 .map(Car::new)
