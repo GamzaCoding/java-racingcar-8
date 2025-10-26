@@ -46,4 +46,11 @@ class CarTest {
         // then
         assertThat(car.getPosition()).isEqualTo(expectedPosition);
     }
+
+    @Test
+    void 자동차_이름_5글자_이하만_가능_테스트() {
+        assertThatThrownBy(() -> new Car("abcdef"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름은 5글자 이하만 가능합니다.");
+    }
 }

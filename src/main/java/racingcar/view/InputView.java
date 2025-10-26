@@ -5,7 +5,7 @@ import static racingcar.validation.Validation.*;
 
 public class InputView {
 
-    public String inputCarName() {
+    public String inputCarNames() {
         String carNames = readLine().trim();
         validateNameFormat(carNames);
 

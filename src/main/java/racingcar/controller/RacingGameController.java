@@ -22,7 +22,7 @@ public class RacingGameController {
 
     private RacingGameService setupGame() {
         outputView.printInitMessage();
-        String carNames = inputView.inputCarName();
+        String carNames = inputView.inputCarNames();
         outputView.printRequestMessageOfTryCount();
         int tryCount = inputView.inputTryCount();
 
