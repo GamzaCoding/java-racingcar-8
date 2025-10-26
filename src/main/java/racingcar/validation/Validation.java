@@ -15,26 +15,25 @@ public class Validation {
     private static final int ZERO_NUMBER = 0;
 
     public static void validateNameFormat(String inputCarNames) {
-        if (inputCarNames.matches(CAR_NAMES_REGEX)) {
-            return;
+        if (doesNotMatchNameFormat(inputCarNames)) {
+            throw new IllegalArgumentException(NAME_FORMAT_ERROR_MESSAGE);
         }
-        throw new IllegalArgumentException(NAME_FORMAT_ERROR_MESSAGE);
     }
 
     public static void validateNameDuplication(List<String> carNames) {
-        if (carNames.size() != Set.copyOf(carNames).size()) {
+        if (isDuplicate(carNames)) {
             throw new IllegalArgumentException(NAME_DUPLICATION_ERROR_MESSAGE);
         }
     }
 
     public static void validateMaxNameLength(String name) {
-        if (name.length() > MAX_NAME_LENGTH) {
+        if (isOverMaxLength(name)) {
             throw new IllegalArgumentException(MAX_NAME_LENGTH_ERROR_MESSAGE);
         }
     }
 
     public static void validatePositiveNumber(String tryCount) {
-        if (Integer.parseInt(tryCount) <= ZERO_NUMBER) {
+        if (isNotPositive(tryCount)) {
             throw new IllegalArgumentException(POSITIVE_NUMBER_ERROR_MESSAGE);
         }
     }
@@ -45,5 +44,21 @@ public class Validation {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INTEGER_FORMAT_ERROR_MESSAGE);
         }
+    }
+
+    private static boolean doesNotMatchNameFormat(String inputCarNames) {
+        return !inputCarNames.matches(CAR_NAMES_REGEX);
+    }
+
+    private static boolean isDuplicate(List<String> carNames) {
+        return carNames.size() != Set.copyOf(carNames).size();
+    }
+
+    private static boolean isOverMaxLength(String name) {
+        return name.length() > MAX_NAME_LENGTH;
+    }
+
+    private static boolean isNotPositive(String tryCount) {
+        return Integer.parseInt(tryCount) <= ZERO_NUMBER;
     }
 }

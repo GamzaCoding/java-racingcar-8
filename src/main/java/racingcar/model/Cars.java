@@ -1,17 +1,18 @@
 package racingcar.model;
 
+import static racingcar.validation.Validation.*;
+
 import java.util.List;
 import racingcar.dto.CarDto;
-import racingcar.validation.Validation;
 
 public class Cars {
 
-    private static final int ZERO_POSITON = 0;
+    private static final int ZERO_POSITION = 0;
 
     private final List<Car> cars;
 
     public Cars(List<String> carNames) {
-        Validation.validateNameDuplication(carNames);
+        validateNameDuplication(carNames);
 
         this.cars = carNames.stream()
                 .map(Car::new)
@@ -22,7 +23,7 @@ public class Cars {
         return cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
-                .orElse(ZERO_POSITON);
+                .orElse(ZERO_POSITION);
     }
 
     public List<Car> getCars() {
