@@ -13,10 +13,7 @@ public class Cars {
 
     public Cars(List<String> carNames) {
         validateNameDuplication(carNames);
-
-        this.cars = carNames.stream()
-                .map(Car::new)
-                .toList();
+        this.cars = namesToCars(carNames);
     }
 
     public int findMaxPosition() {
@@ -33,6 +30,12 @@ public class Cars {
     public List<CarDto> getCarDto() {
         return cars.stream()
                 .map(car -> new CarDto(car.getName(), car.getPosition()))
+                .toList();
+    }
+
+    private List<Car> namesToCars(List<String> carNames) {
+        return carNames.stream()
+                .map(Car::new)
                 .toList();
     }
 }

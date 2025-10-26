@@ -5,20 +5,20 @@ import racingcar.dto.CarDto;
 import racingcar.model.Car;
 import racingcar.model.Cars;
 import racingcar.model.RacingRound;
-import racingcar.model.movementStrategy.MovementStrategy;
-import racingcar.model.movementStrategy.RandomMovementStrategy;
+import racingcar.model.moveStrategy.MoveStrategy;
+import racingcar.model.moveStrategy.RandomMoveStrategy;
 import racingcar.utility.Parsing;
 
 public class RacingGameService {
 
     private final Cars cars;
     private final RacingRound racingRound;
-    private final MovementStrategy movementStrategy;
+    private final MoveStrategy movementStrategy;
 
     public RacingGameService(String carNames, int tryCount) {
         this.cars = createCars(carNames);
         this.racingRound = new RacingRound(tryCount);
-        this.movementStrategy = new RandomMovementStrategy();
+        this.movementStrategy = new RandomMoveStrategy();
     }
 
     public boolean hasNextRound() {
@@ -28,7 +28,8 @@ public class RacingGameService {
     public void playRound() {
         racingRound.progressRound();
 
-        cars.getCars().forEach(car -> car.move(movementStrategy));
+        cars.getCars()
+                .forEach(car -> car.move(movementStrategy));
     }
 
     public List<CarDto> roundResult() {
@@ -38,9 +39,13 @@ public class RacingGameService {
     public List<String> getWinner() {
         int maxPosition = cars.findMaxPosition();
         return cars.getCars().stream()
-                .filter(car -> car.getPosition() == maxPosition)
+                .filter(car -> isWinner(car, maxPosition))
                 .map(Car::getName)
                 .toList();
+    }
+
+    private boolean isWinner(Car car, int maxPosition) {
+        return car.getPosition() == maxPosition;
     }
 
     private Cars createCars(String carNames) {

@@ -1,8 +1,8 @@
-package racingcar.model.movementStrategy;
+package racingcar.model.moveStrategy;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-public class RandomMovementStrategy implements MovementStrategy {
+public class RandomMoveStrategy implements MoveStrategy {
     private static final int START_NUMBER = 0;
     private static final int END_NUMBER = 9;
     private static final int THRESHOLD_NUMBER = 4;
