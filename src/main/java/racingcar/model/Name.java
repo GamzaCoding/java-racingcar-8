@@ -7,11 +7,11 @@ public class Name {
     private final String name;
 
     public Name(String name) {
-        validateNameLengthUnderFive(name);
+        validateMaxNameLength(name);
         this.name = name;
     }
 
-    public String getName() {
+    public String get() {
         return name;
     }
 }

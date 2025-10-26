@@ -4,8 +4,11 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class Car {
 
+    private static final int DEFAULT_POSITION = 0;
+    private static final int MOVEMENT_AMOUNT = 1;
+
     private final Name name;
-    private int position = 0;
+    private int position = DEFAULT_POSITION;
 
     public Car(String name) {
         this.name = new Name(name);
@@ -17,7 +20,7 @@ public class Car {
 
     public void move() {
         if (canMove()) {
-            position += 1;
+            position += MOVEMENT_AMOUNT;
         }
     }
 
@@ -26,6 +29,6 @@ public class Car {
     }
 
     public String getName() {
-        return name.getName();
+        return name.get();
     }
 }

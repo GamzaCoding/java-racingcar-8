@@ -6,6 +6,8 @@ import racingcar.validation.Validation;
 
 public class Cars {
 
+    private static final int ZERO_POSITON = 0;
+
     private final List<Car> cars;
 
     public Cars(List<String> carNames) {
@@ -20,7 +22,7 @@ public class Cars {
         return cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
-                .orElseThrow(() -> new IllegalStateException("차가 없습니다."));
+                .orElse(ZERO_POSITON);
     }
 
     public List<Car> getCars() {

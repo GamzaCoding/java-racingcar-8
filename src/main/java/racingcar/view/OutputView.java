@@ -31,13 +31,13 @@ public class OutputView {
         lineBreaksForUi();
     }
 
-    private void printCarMoved(CarDto carDto) {
-        System.out.println(carDto.name() + COLON + ONE_STEP.repeat(carDto.position()));
-    }
-
     public void printWinner(List<String> winners) {
         String result = String.join(COMMA, winners);
         System.out.println(WINNER + result);
+    }
+
+    private void printCarMoved(CarDto carDto) {
+        System.out.println(carDto.name() + COLON + ONE_STEP.repeat(carDto.position()));
     }
 
     private void lineBreaksForUi() {

@@ -2,7 +2,7 @@ package racingcar.model;
 
 public class RacingRound {
 
-    private static final int ZERO = 0;
+    private static final int ZERO_COUNT = 0;
 
     private int tryCount;
 
@@ -11,7 +11,7 @@ public class RacingRound {
     }
 
     public boolean hasNextRound() {
-        return tryCount > ZERO;
+        return tryCount > ZERO_COUNT;
     }
 
     public void progressRound() {
