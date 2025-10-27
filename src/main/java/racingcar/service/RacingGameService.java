@@ -1,5 +1,6 @@
 package racingcar.service;
 
+import java.util.Arrays;
 import java.util.List;
 import racingcar.dto.CarDto;
 import racingcar.model.Car;
@@ -7,9 +8,10 @@ import racingcar.model.Cars;
 import racingcar.model.RacingRound;
 import racingcar.model.moveStrategy.MoveStrategy;
 import racingcar.model.moveStrategy.RandomMoveStrategy;
-import racingcar.utility.Parsing;
 
 public class RacingGameService {
+
+    private static final String DELIMITER = ",";
 
     private final Cars cars;
     private final RacingRound racingRound;
@@ -49,6 +51,12 @@ public class RacingGameService {
     }
 
     private Cars createCars(String carNames) {
-        return new Cars(Parsing.parsingName(carNames));
+        return new Cars(parsingName(carNames));
+    }
+
+    private List<String> parsingName(String names) {
+        return Arrays.stream(names.split(DELIMITER))
+                .map(String::trim)
+                .toList();
     }
 }
